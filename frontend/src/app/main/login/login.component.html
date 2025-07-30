@@ -1,0 +1,66 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h3 class="mb-0 text-center">Login</h3>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                [(ngModel)]="credentials.email"
+                name="email"
+                required
+                email
+                [class.is-invalid]="isSubmitted && !credentials.email"
+              >
+              <div class="invalid-feedback" *ngIf="isSubmitted && !credentials.email">
+                Please enter your email
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                [(ngModel)]="credentials.password"
+                name="password"
+                required
+                minlength="6"
+                [class.is-invalid]="isSubmitted && !credentials.password"
+              >
+              <div class="invalid-feedback" *ngIf="isSubmitted && !credentials.password">
+                Please enter your password
+              </div>
+            </div>
+
+            <div *ngIf="errorMessage" class="alert alert-danger">
+              {{ errorMessage }}
+            </div>
+
+            <div class="d-grid">
+              <button
+                type="submit"
+                class="btn btn-primary btn-lg"
+                [disabled]="isLoading"
+              >
+                <span *ngIf="!isLoading">Login</span>
+                <span *ngIf="isLoading">
+                  <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                  Logging in...
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

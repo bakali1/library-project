@@ -1,0 +1,45 @@
+/* Branch selector */
+.branch-selector {
+  background-color: #f8f9fa;
+  font-size: 0.9rem;
+}
+
+/* Active nav item */
+.navbar-nav .nav-link.active {
+  font-weight: 500;
+  border-bottom: 2px solid #0d6efd;
+}
+
+/* User dropdown */
+.dropdown-toggle::after {
+  margin-left: 0.5em;
+  vertical-align: middle;
+}
+
+/* Active dropdown item */
+.dropdown-item.active {
+  background-color: #0d6efd;
+}
+
+/* Compact form controls */
+.form-select-sm, .form-control-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* Mobile adjustments */
+@media (max-width: 767.98px) {
+  .branch-selector .container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .navbar-collapse {
+    padding-top: 1rem;
+  }
+}
+
+/* Avatar image fallback */
+img[src] {
+  object-fit: cover;
+}

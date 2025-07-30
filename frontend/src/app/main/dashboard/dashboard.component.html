@@ -1,0 +1,122 @@
+<div class="container-fluid mt-3">
+  <!-- Quick Actions -->
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <button class="btn btn-primary w-100 py-3" routerLink="/checkout">
+        <i class="bi bi-journal-plus"></i> New Book Loan
+      </button>
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-success w-100 py-3" routerLink="/return">
+        <i class="bi bi-journal-check"></i> Record Return
+      </button>
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-warning w-100 py-3" routerLink="/overdue">
+        <i class="bi bi-exclamation-triangle"></i> View Overdue
+      </button>
+    </div>
+  </div>
+
+  <!-- ToDo: fix it to be visibale only for SUPPERADMIN and chose the school -->
+
+  <!-- School Level Tabs
+  <ul class="nav nav-tabs">
+    <li class="nav-item" *ngFor="let level of schoolLevels">
+      <a class="nav-link" [class.active]="activeLevel === level.id"
+         (click)="setActiveLevel(level.id)">
+        {{level.name}}
+      </a>
+    </li>
+  </ul>
+  -->
+
+  <!-- Statistics Cards -->
+  <div class="row mt-3">
+    <div class="col-md-3 mb-4">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <h6 class="text-muted">Active Loans</h6>
+          <h2>{{stats.activeLoans}}</h2>
+          <span class="badge bg-info">+{{stats.todayLoans}} today</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-4">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <h6 class="text-muted">Overdue Books</h6>
+          <h2 class="text-danger">{{stats.overdueBooks}}</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-4">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <h6 class="text-muted">Teachers with Books</h6>
+          <h2>{{stats.teachersWithBooks}}</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-4">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <h6 class="text-muted">Available Copies</h6>
+          <h2>{{stats.availableCopies}}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Activity Table -->
+  <div class="card mt-3">
+    <div class="card-header bg-light">
+      <h5 class="mb-0 text-center">Recent Loans</h5>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead class="bg-light">
+            <tr>
+              <th>Name</th>
+              <th>Book Name</th>
+              <th>School</th>
+              <th>Date Out</th>
+              <th>Due Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let loan of recentLoans">
+  <td>{{loan.teacherName}}</td>
+  <td>{{loan.bookTitle}}</td>
+  <td>{{loan.schoolLevel}}</td>
+  <td>{{loan.dateOut | date:'shortDate'}}</td>
+  <td [class.text-danger]="isOverdue(loan.dueDate)">
+    {{loan.dueDate | date:'shortDate'}}
+  </td>
+  <td class="text-center">
+    <span [ngClass]="{
+      'badge rounded-pill px-3 py-2 fw-semibold text-uppercase': true,
+      'bg-success-subtle text-success border border-success': !isOverdue(loan.dueDate),
+      'bg-danger-subtle text-danger border border-danger': isOverdue(loan.dueDate)
+    }">
+      {{ isOverdue(loan.dueDate) ? 'Overdue' : 'Active' }}
+    </span>
+  </td>
+  <td>
+    <button class="btn btn-sm btn-outline-primary"
+            (click)="returnBook(loan)">
+      <i class="bi bi-arrow-return-left"></i> Return
+    </button>
+  </td>
+</tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

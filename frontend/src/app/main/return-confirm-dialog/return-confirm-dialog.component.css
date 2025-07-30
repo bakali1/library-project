@@ -1,0 +1,23 @@
+.success-snackbar {
+  background-color: #28a745;
+  color: white;
+}
+
+.error-snackbar {
+  background-color: #dc3545;
+  color: white;
+}
+
+.return-highlight {
+  animation: highlight 2s;
+}
+
+@keyframes highlight {
+  0% { background-color: #d1ecf1; }
+  50% { background-color: #fff3cd; }
+  100% { background-color: transparent; }
+}
+
+.bg-light-blue {
+  background-color: #e8f4ff;
+}

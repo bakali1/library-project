@@ -1,0 +1,36 @@
+<!-- checkout.component.html -->
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Checkout Books</h2>
+    <button mat-raised-button color="primary" routerLink="/dashboard">
+      <mat-icon>arrow_back</mat-icon> Back to Dashboard
+    </button>
+  </div>
+
+  <div *ngIf="isLoading" class="text-center py-5">
+    <mat-spinner></mat-spinner>
+    <p>Loading books...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!isLoading && !errorMessage">
+    <mat-card *ngFor="let book of books" class="mb-3">
+      <mat-card-header>
+        <mat-card-title>{{ book.title }}</mat-card-title>
+        <mat-card-subtitle>{{ book.author }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Publisher: {{ book.publisher }}</p>
+        <p>Available Copies: {{ book.numberOfCopies }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="openLoanDialog(book)">
+          <mat-icon>add</mat-icon> Checkout
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

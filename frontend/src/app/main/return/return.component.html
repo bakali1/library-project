@@ -1,0 +1,104 @@
+<div class="container mt-4">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white">
+      <div class="d-flex justify-content-between align-items-center">
+        <h4 class="mb-0">Return Books</h4>
+        <button class="btn btn-light" routerLink="/dashboard">
+          <i class="bi bi-arrow-left"></i> Back to Dashboard
+        </button>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="row">
+        <!-- Barcode Scanner Section -->
+        <div class="col-md-5">
+          <div class="card mb-4">
+            <div class="card-header bg-info text-white">
+              <h5><i class="bi bi-upc-scan me-2"></i>Quick Return</h5>
+            </div>
+            <div class="card-body">
+              <div class="mb-3">
+                <label class="form-label">Enter Borrow ID</label>
+                <div class="input-group">
+                  <input type="text" class="form-control"
+                         [formControl]="borrowIdControl"
+                         placeholder="Scan barcode or enter ID">
+                  <button class="btn btn-primary" type="button" (click)="scanBarcode()">
+                    <i class="bi bi-upc-scan"></i> Scan
+                  </button>
+                </div>
+                <div *ngIf="borrowIdControl.invalid" class="text-danger mt-1">
+                  Valid borrow ID required
+                </div>
+              </div>
+              <button class="btn btn-success w-100 py-2"
+                      (click)="submitReturn()"
+                      [disabled]="borrowIdControl.invalid || isLoading">
+                <i class="bi bi-check-circle me-2"></i>
+                <span *ngIf="!isLoading">Process Return</span>
+                <span *ngIf="isLoading">Processing...</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h5><i class="bi bi-info-circle me-2"></i>How to Find Borrow ID</h5>
+            </div>
+            <div class="card-body">
+              <ul>
+                <li>Check the loan receipt provided when borrowing</li>
+                <li>Look for the ID in the "Recent Loans" section</li>
+                <li>Scan the barcode on the book's return slip</li>
+                <li>Contact the librarian for assistance</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Loans Section -->
+        <div class="col-md-7">
+          <div class="card h-100">
+            <div class="card-header bg-warning">
+              <h5 class="mb-0"><i class="bi bi-list me-2"></i>Active Loans</h5>
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                  <thead class="bg-light">
+                    <tr>
+                      <th>Book</th>
+                      <th>Borrower</th>
+                      <th>Due Date</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngIf="activeLoans.length === 0">
+                      <td colspan="4" class="text-center py-4">No active loans found</td>
+                    </tr>
+                    <tr *ngFor="let loan of activeLoans"
+                        [class.table-warning]="isOverdue(loan.dueDate)">
+                      <td>{{loan.bookTitle}}</td>
+                      <td>{{loan.teacherName}}</td>
+                      <td [class.text-danger]="isOverdue(loan.dueDate)">
+                        {{loan.dueDate | date:'shortDate'}}
+                      </td>
+                      <td>
+                        <button class="btn btn-sm btn-success"
+                                (click)="returnSelected(loan)">
+                          <i class="bi bi-arrow-return-left"></i> Return
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

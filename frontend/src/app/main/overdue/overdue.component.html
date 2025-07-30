@@ -1,0 +1,79 @@
+<div class="container-fluid mt-3">
+  <!-- Quick Actions -->
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <button class="btn btn-primary w-100 py-3" routerLink="/checkout">
+        <i class="bi bi-journal-plus"></i> New Book Loan
+      </button>
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-success w-100 py-3" routerLink="/return">
+        <i class="bi bi-journal-check"></i> Record Return
+      </button>
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-warning w-100 py-3" routerLink="/overdue">
+        <i class="bi bi-exclamation-triangle"></i> View Overdue
+      </button>
+    </div>
+  </div>
+
+  <!-- ToDo: fix it to be visibale only for SUPPERADMIN and chose the school -->
+
+  <!-- School Level Tabs
+  <ul class="nav nav-tabs">
+    <li class="nav-item" *ngFor="let level of schoolLevels">
+      <a class="nav-link" [class.active]="activeLevel === level.id"
+         (click)="setActiveLevel(level.id)">
+        {{level.name}}
+      </a>
+    </li>
+  </ul>
+  -->
+
+  <!-- Recent Activity Table -->
+  <div class="card mt-3">
+    <div class="card-header bg-light">
+      <h5 class="mb-0 text-center">Recent Loans</h5>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead class="bg-light">
+            <tr>
+              <th>Name</th>
+              <th>Book Name</th>
+              <th>School</th>
+              <th>Date Out</th>
+              <th>Due Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="recentLoans.length === 0">
+              <td colspan="6" class="text-center">No recent loans found</td>
+            </tr>
+            <tr *ngFor="let loan of recentLoans">
+              <td>{{loan.teacherName}}</td>
+              <td>{{loan.bookTitle}}</td>
+              <td>{{loan.schoolLevel}}</td>
+              <td>{{loan.dateOut | date:'shortDate'}}</td>
+              <td [class.text-danger]="isOverdue(loan.dueDate)">
+                {{loan.dueDate | date:'shortDate'}}
+              </td>
+              <td class="text-center">
+<span [ngClass]="{
+  'badge rounded-pill px-3 py-2 fw-semibold text-uppercase': true,
+  'bg-success-subtle text-success border border-success': !isOverdue(loan.dueDate),
+  'bg-danger-subtle text-danger border border-danger': isOverdue(loan.dueDate)
+}">
+  {{ isOverdue(loan.dueDate) ? 'Overdue' : 'Active' }}
+</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

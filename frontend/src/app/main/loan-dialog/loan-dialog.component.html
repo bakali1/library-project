@@ -1,0 +1,36 @@
+<!-- loan-dialog.component.html -->
+<h2 mat-dialog-title>Create New Loan</h2>
+
+<mat-dialog-content>
+  <div class="book-info mb-4">
+    <h3>{{ data.book.title }}</h3>
+    <p>by {{ data.book.author }}</p>
+    <p>Available Copies: {{ data.book.numberOfCopies }}</p>
+  </div>
+
+  <form>
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Borrower Email</mat-label>
+      <input matInput [formControl]="borrowerEmail">
+      <mat-error *ngIf="borrowerEmail.invalid">Borrower ID is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Due Date</mat-label>
+      <input matInput type="date" [formControl]="dueDate">
+      <mat-error *ngIf="dueDate.invalid">Due date is required</mat-error>
+    </mat-form-field>
+
+    <div *ngIf="errorMessage" class="alert alert-danger mb-3">
+      {{ errorMessage }}
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="submit()" [disabled]="isLoading">
+    <span *ngIf="!isLoading">Create Loan</span>
+    <span *ngIf="isLoading">Processing...</span>
+  </button>
+</mat-dialog-actions>

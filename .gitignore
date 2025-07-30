@@ -1,0 +1,80 @@
+### Java ###
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.log
+*.tmp
+hs_err_pid*
+
+### Maven ###
+target/
+**/target/
+*.versionsBackup
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+### Angular ###
+dist/
+dist-ssr/
+node_modules/
+.cache/
+.angular/
+*.ngsummary.json
+*.ngfactory.ts
+*.ngstyle.ts
+*.ngtsc
+
+### IDE ###
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.sw?
+.nb-gradle/
+
+### Environment ###
+.env
+*.env.local
+*.env.*.local
+.env.test
+.env.production
+
+### System ###
+.DS_Store
+Thumbs.db
+
+### Spring Boot ###
+application.properties
+application-dev.properties
+application-prod.properties
+!/src/main/resources/application.properties
+
+### Logs ###
+logs/
+*.log
+npm-debug.log*
+
+### Build ###
+build/
+out/
+release/
+
+### Frontend Specific ###
+/bower_components/
+/.sass-cache/
+/connect.lock/
+/coverage/
+/libpeerconnection.log
+/testem.log
+/typings/
+
+### Backend Specific ###
+*.original
+*.bak
+*.factorypath
+*.prefs
+.settings/
